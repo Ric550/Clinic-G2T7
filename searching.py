@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS 
 import os
 from invokes import invoke_http
@@ -13,7 +13,7 @@ def searchByLoc(loc):
     clinicdict = {}
     for i in range(len(results)):
         clinicdict[i] = results[i]
-    return {
+    return jsonify{
         "code": 201,
         "data": {
             "clinic_result": clinicdict
