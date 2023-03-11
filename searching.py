@@ -13,12 +13,14 @@ def searchByLoc(loc):
     clinicdict = {}
     for i in range(len(results)):
         clinicdict[i] = results[i]
-    return jsonify{
+    return jsonify(
+        {
         "code": 201,
         "data": {
             "clinic_result": clinicdict
         }
     }
+    )
 
 #Execute this program if it is run as a main script (not by 'import')
 if __name__ == "__main__":
