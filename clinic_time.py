@@ -72,21 +72,21 @@ def find_by_clinicLoc(clinicName):
     ), 444
 
  
-@app.route("/clinic/<string:clinicLoc>", methods=['POST'])
-def create_clinic(clinicLoc):
-    if (Clinic.query.filter_by(clinicLoc=clinicLoc).first()):
+@app.route("/clinic/<string:clinicName>", methods=['POST'])
+def create_clinic(clinicName):
+    if (Clinic.query.filter_by(clinicName=clinicName).first()):
         return jsonify(
             {
                 "code": 400,
                 "data": {
-                    "clinicLoc": clinicLoc
+                    "clinicName": clinicName
                 },
                 "message": "Clinic already exists."
             }
         ), 400
  
     data = request.get_json()
-    clinic = Clinic(clinicLoc, **data)
+    clinic = Clinic(clinicName, **data)
  
     try:
         db.session.add(clinic)
@@ -96,7 +96,7 @@ def create_clinic(clinicLoc):
             {
                 "code": 500,
                 "data": {
-                    "clinicLoc": clinicLoc
+                    "clinicName": clinicName
                 },
                 "message": "An error occurred creating the clinic."
             }
